@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>预约</title>
+
+<link href="__PUBLIC__/css/ReserveIndex.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#main_form a{
+	color: white;
+}
+</style>
+</head>
+<body>
+
+<div id="subjects">
+	<form id="main_form" role="form" action="{:U('Reserve/about')}" method="post"  accept-charset="utf-8" style="padding-bottom: 4em;">
+		<div class="form_ctrl page_head" id="1" title="预约" style="color: white; background-color: rgb(255, 108, 0);"><h2><a href="{:U('Reserve/show')}">{$restaurant_name}</a></h2></div>
+		
+
+		
+		<div class="form_ctrl input_text"  title="联系电话">
+			<label class="ctrl_title">用餐联系电话</label>
+			<input type="text" name="input_phone" value="{$phone['0']['phone']}" placeholder={$phone['0']['phone']}>
+		</div>
+		<div class="form_ctrl input_date"  title="用餐日期">
+			<label class="ctrl_title">用餐日期</label>
+			<input type="date" name="input_date" placeholder="请输入日期"  value={$date}>
+		</div>
+		<div class="form_ctrl form_select"  title="时间段">
+			<label class="ctrl_title">用餐时间段</label>
+			<select name="select" num="1"><option value="1">11:00-12:00</option><option value="2">12:00-13:00</option></select>
+		</div>
+		<div class="form_ctrl form_goods"  title="开胃菜" >
+			<label class="ctrl_title">点菜</label>
+			<div class="form_goods_items">
+				<foreach  name="list" item="vo" >
+					<div class="form_goods_item" id={$vo.id}>
+						<div class="form_goods_box">
+							<div class="form_goods_image" style="background-image:url(__PUBLIC__/{$vo.image});"></div>
+							<div class="form_goods_title">{$vo.name}</div>
+							<div class="form_goods_panel">
+								<div class="form_goods_info">
+									<div class="form_goods_price">{$vo.price}</div>
+								</div>
+								<div class="form_goods_count">
+									<div class="form_goods_minus" onClick="goodsMinus(this)"></div>
+									<div class="form_goods_plus" onClick="goodsPlus(this)"></div>
+									<input class="form_goods_input" type="text" value="0" onChange="ctrl2order(this)" name={$vo.id}>
+								</div>
+							</div>
+						</div>
+					</div>
+				</foreach>
+							
+			</div>
+		</div>
+	
+		<input type ="hidden" id="cost" name = "cost" value = "0"> </input>
+		<div class="form_ctrl form_submit" id="9" title="提交选座">
+			<!-- <label class="ctrl_title">提交选座</label> -->
+			<input type="submit"  value="确认" class="submitbill"  style="color: white; background-color: rgb(255, 108, 0);">
+		</div>
+		
+	</form>
+
+</div>
+
+<script src="__PUBLIC__/js/form.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".submitbill").click(function(){
+			var cost = $(".form_order_cost span").html().substring(1);
+			$("#cost").val(cost);
+			return true;
+		});
+	});
+</script>
+</body>
+</html>
+

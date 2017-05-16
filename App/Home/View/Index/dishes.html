@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>菜单</title>
+<meta name="author" content="Codrops" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css" />
+</head>
+    <body>
+	
+        <div class="container">	
+			<section class="main">
+
+				<div id="rm-container" class="rm-container rm-open">
+
+					<div class="rm-wrapper">
+						<div class="rm-middle">
+							<div class="rm-inner">
+								<div class="rm-content">
+									<h4>特色菜</h4>
+									<dl>
+										<foreach name="feature" item="vo">
+											<dt><a href="__PUBLIC__{$vo.image}" class="rm-viewdetails" data-thumb="images/11.jpg">{$vo.name}</a> <span style="float:right;">￥<span style="width: 20px;display:inline-block; ">{$vo.price}</span></dt>
+											<dd>{$vo.detail}</dd>
+										</foreach>
+									</dl>
+								</div><!-- /rm-content -->
+								<div class="rm-overlay"></div>
+							</div><!-- /rm-inner -->
+						</div><!-- /rm-middle -->
+
+						<div class="rm-right">
+
+							<div class="rm-front">
+								
+							</div>
+
+							<div class="rm-back">
+								<div class="rm-content">
+									<h4>菜单</h4>
+									<dl>
+										<foreach name="dishes" item="vo">
+											<dt><a href="__PUBLIC__{$vo.image}" class="rm-viewdetails" data-thumb="images/11.jpg">{$vo.name}</a> <span style="float:right;">￥<span style="width: 20px;display:inline-block; ">{$vo.price}</span></span></dt>
+											<dd>{$vo.detail}</dd>
+										</foreach>
+									</dl>
+								</div><!-- /rm-content -->
+							</div><!-- /rm-back -->
+
+						</div><!-- /rm-right -->
+					</div><!-- /rm-wrapper -->
+
+				</div><!-- /rm-container -->
+
+			</section>
+			
+        </div>
+</body>
+</html>

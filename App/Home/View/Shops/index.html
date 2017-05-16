@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>商家列表</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="__PUBLIC__/css/shops_street.css" rel="stylesheet">
+
+
+</head>
+<body>
+<!-- 页头 -->
+<div class="page-header">
+  <h1>餐厅展示 <small>{$myAddress}</small></h1>
+</div>
+<p>您在{$myAddress}附近有<?php echo count($list)?>家餐厅</p>
+<!-- <foreach name = 'list' item = 'vo'>
+	<a href="{{ Think.U('Home/Reserve/index','shopId='vo.id)}}">{$vo.name}</a>
+	<p>地址：{$vo.address}</p>
+</foreach> -->
+
+<!-- 主要内容 -->
+<div class="container-fluid">
+
+	<div class="wst-shop-box">
+        <div style="width:80px;height:80px; float:left;">
+            <a href="{{ Think.U('Home/Shops/toShopHome','shopId='+d[i].shopId)}}">
+                                 <img width="80" class='lazyImg' height="80" title="{{d[i].shopName}}" data-original="/wstmall/{{d[i].shopImUpload/mall/2016-08/57ad769d0b916.png" style="display: inline;">
+            </a>
+        </div>
+        <div class="wst-shop-streets-items">
+            <div style="font-weight:bolder;">
+              <a href="{{ Think.U('Home/Index/tofarm','shopId='+d[i].shopId)}}">{{d[i].shopName}}</a>
+            </div>
+                               <div style="">农场地址：{{d[i].shopAddress}}</div><div style="">消费均价{{d[i].deliveryStai].deliveryMoney}}元，住宿均价{{d[i].deliveryFreeMoney}}</div>
+            <div class="wst-shop-streets-items-status">
+               <img style="vertical-align:middle" src="/wstmall/Apps/Home/View/default/images/icon_menu_01.png">&nbsp;&nbsp;
+               {{#if(d[i].shopAtive==1){}}营业中{{#}else{}}休息中{{#}}}
+            </div>
+        </div>
+       <div class="wst-clear"></div>
+    </div>
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

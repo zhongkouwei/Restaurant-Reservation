@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>主页</title>
+</head>
+
+<body>
+	<p>主页</p>
+    <p><a href ="{:U('reserve/index')}">刘一手火锅</a></p>
+    <foreach name ="list" item = "vo">
+        <tr>
+        	<td>{$vo.name}</td>
+        	<td>{$vo.address}</td>
+        </tr>
+    </foreach>
+</body>
+
+</html>

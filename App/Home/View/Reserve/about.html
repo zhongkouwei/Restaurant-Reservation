@@ -1,0 +1,163 @@
+
+<html >
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <meta http-equiv="Cache-Control" content="no-transform" /> 
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/ReserveAbout.css" />
+        
+    </head>
+    <body>
+        <div class="form_ctrl page_head" id="1" title="预约" style="color: white; background-color: rgb(255, 108, 0);"><h2>{$restaurant_name}</h2></div>
+        <div class="container">
+            
+            <div class="demo clearfix">
+                                      
+                <div id="seat_area">
+                    <!-- <div class="front">正门</div>                  -->
+                </div>
+                 <!-- <div id="legend"></div> -->
+                <div class="booking_area">
+                   
+                    <p>座位：</p>
+
+                        <ul id="seats_chose"></ul>
+                     <form role="form" action="{:U('Reserve/reserve')}" method="post">           
+                         <!-- 其他表单元素 -->
+                        
+                        <input type="hidden"  id="cost" name="cost" value={$cost}>
+                        <input type="hidden"  id="deskid" name="deskid">
+
+                        <input class ="btns" type="submit" value="提交">
+                    </form>            
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/js/jquery.seat-charts.min.js"></script>
+        <script type="text/javascript">
+            var price = 100; 
+            var desk = new Array();
+            $(document).ready(function() {
+                
+
+
+                var $cart = $('#seats_chose'), //座位区
+                        $tickects_num = $('#tickects_num'), //票数
+                        $total_price = $('#total_price'); //票价总额
+
+                var sc = $('#seat_area').seatCharts({
+                    map: [//座位结构图 a 代表座位; 下划线 "_" 代表过道
+                        'cccc',
+                        'cccc',
+                        'cccc',
+                        'cccc',
+                        'cccc',
+                        
+                      
+                    ],
+                    naming: {
+                        top: false, //不显示顶部横坐标（行） 
+                        getLabel: function(character, row, column) { //返回座位信息 
+                            return column;
+                        }
+                    },
+                    legend: {
+                        node: $('#legend'),
+                        items: [
+                            ['c', 'available', '可选座'],
+                            ['c', 'unavailable', '已售出']
+                        ]
+                    },
+                    click: function() {
+                        if (this.status() == 'available') { //若为可选座状态，添加座位
+                             $("#seats_chose").empty();//清空已选座位
+                             sc.get('1_1').status('available');
+                            sc.get('1_2').status('available');
+                            sc.get('1_3').status('available');
+                            sc.get('1_4').status('available');
+                            // sc.get('1_5').status('available');
+                            sc.get('2_1').status('available');
+                            sc.get('2_2').status('available');
+                            sc.get('2_3').status('available');
+                            sc.get('2_4').status('available');
+                            // sc.get('2_5').status('available');
+                             sc.get('3_1').status('available');
+                            sc.get('3_2').status('available');
+                            sc.get('3_3').status('available');
+                            sc.get('3_4').status('available');
+                            // sc.get('3_5').status('available');
+                             sc.get('4_1').status('available');
+                            sc.get('4_2').status('available');
+                            sc.get('4_3').status('available');
+                            sc.get('4_4').status('available');
+                            // sc.get('4_5').status('available');
+                             sc.get('5_1').status('available');
+                            sc.get('5_2').status('available');
+                            sc.get('5_3').status('available');
+                            sc.get('5_4').status('available');
+                            // sc.get('5_5').status('available');
+                            var list = {$list}
+                
+                            for (var i=0;i<list.length;i++)
+                            {
+                                sc.get(list[i]['desk_id']).status('unavailable');    
+                    
+                            }  
+                           $('<li>' + ((this.settings.row ) *4 + this.settings.label )+ '桌</li>')
+                                    .attr('id', 'cart-item-' + this.settings.id)
+                                    .data('seatId', this.settings.id)
+                                    .appendTo($cart);
+                            $desk_id= this.settings.id;
+
+                            document.getElementById("deskid").value = $desk_id;
+
+                            $tickects_num.text(sc.find('selected').length + 1); //统计选票数量
+                            $total_price.text(getTotalPrice(sc) + price);//计算票价总金额
+
+                            return 'selected';
+                        } else if (this.status() == 'selected') { //若为选中状态
+
+                            $tickects_num.text(sc.find('selected').length - 1);//更新票数量
+                            $total_price.text(getTotalPrice(sc) - price);//更新票价总金额
+                            $('#cart-item-' + this.settings.id).remove();//删除已预订座位
+
+                            return 'available';
+                        } else if (this.status() == 'unavailable') { //若为已售出状态
+                            return 'unavailable';
+                        } else {
+                            return this.style();
+                        }
+                    }
+                });
+            
+                var list = {$list}
+                
+                for (var i=0;i<list.length;i++)
+                {
+                    sc.get(list[i]['desk_id']).status('unavailable');
+                }                
+                //接收数组并设置已售出的位置
+
+                
+            });
+
+            function getTotalPrice(sc) { 
+                var total = 0;
+                sc.find('selected').each(function() {
+                    total += price;
+                });
+                return total;
+            }
+
+           
+        </script>
+
+    </body>
+</html>

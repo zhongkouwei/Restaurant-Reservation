@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>绑定</title>
+
+<link href="__PUBLIC__/css/ReserveBind.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+	
+		<div class="cd-user-modal-container">
+
+			
+			<div > <!-- 注册表单 -->
+				<form class="cd-form" role="form" action="{:U('Reserve/binding')}"   method="post">
+					<p class="fieldset">
+						<label class="image-replace cd-username" for="signup-username">姓名</label>
+						<input class="full-width has-padding has-border" name="name" type="text" placeholder="输入姓名">
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signup-email">联系方式</label>
+						<input class="full-width has-padding has-border" name="phone" type="text" placeholder="输入手机号">
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width2" type="submit"  value="绑定用户">
+					</p>
+				</form>
+			</div>
+
+			
+		</div>
+	
+
+</body>
+</html>

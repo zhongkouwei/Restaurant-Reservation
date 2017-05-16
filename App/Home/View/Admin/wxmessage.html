@@ -1,0 +1,123 @@
+    <script>
+    function validate(){
+        document.getElementById('myform').submit();
+    }
+    $(document).ready(function() {
+        var table = $('#dataTables-example').DataTable({
+            //"bLengthChange": false,
+            "aLengthMenu": [[15, 30, -1], [15, 30, 'ALL']],
+            language: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+             },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            },
+            "bAutoWidth": false,
+            //"dom": 'rt<"bottom"iflp<"clear">>', 
+            //"dom":'<"domab"f>',
+        }); 
+    });
+    </script>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">微信消息管理</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <!-- /.panel-heading -->      
+                            <div class="panel-body">
+                                <form action="{:U('Admin/expReserve')}" method="post">
+                                    <table >
+                                            <tr>
+                                                <td><p>选择时间段&nbsp;</p></td>
+                                                <td><input type="date" class="form-control" name="date"></td>
+                                            </tr>
+                                            
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+
+                                    <table class="table table-striped table-bordered table-hover display" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>消息ID</th>
+                                                <th>发送者ID</th>
+                                                <th>接收ID</th>
+                                                <th>创建时间</th>
+                                                <th>消息类型</th>
+                                                <th>内容</th>
+                                                <th>回复</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <foreach name="message" item="vo">
+                                                <tr on='{$vo.id}'>
+                                                    <td>{$vo.id}</td>
+                                                    <td>{$vo.from_id}</td>
+                                                    <td>{$vo.to_id}</td>
+                                                    <td>{$vo.time}</td>
+                                                    <td>{$vo.message_type}</td>
+                                                    <td>
+                                                    <?php 
+                                                        if($vo['message_type'] == image){
+                                                            $value = $vo['content'];
+                                                            echo "<img src=".$value.">";
+                                                             
+                                                            
+                                                        }
+                                                        else
+                                                            echo $vo['content']; 
+
+                                                    ?>
+                                                    </td>
+                                                    <td><input type="submit" value="回复" class="btn btn-primary" onclick="javascript:validate()"></td>
+                                                </tr>
+                                            </foreach>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+        <!-- 隐藏form -->
+        <form role="form" action="{:U('Weixin/reply')}" id="myform" method="post">
+            <input type="hidden"  id="openid" name="openid" value="ldsk">
+        </form>

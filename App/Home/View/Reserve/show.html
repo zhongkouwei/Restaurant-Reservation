@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>餐厅展示</title>
+
+<style type="text/css">
+body {
+    background-color: #f4f4f4;
+    font-size: 13pt;
+    position: relative;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei","Georgia Pro","Times New Roman",Helvitica,Verdana,Arial,san-serif;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+}	
+.page_head{
+	height:3em;
+	line-height:3em;
+	color:black;
+	background-color:#6eb9c7;
+	text-align:center
+}
+.information{
+	margin: 20px 0  0  15px;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="form_ctrl page_head" id="1" title="预约" style="color: white; background-color: rgb(255, 108, 0);font-size:18px;"><h2>{$name}</h2></div>
+	<div class="information" style="font-size:18px">
+		<p>联系电话：{$phone} </p>
+		<p>地址：{$address}</p>
+	</div>
+</body>
+</html>

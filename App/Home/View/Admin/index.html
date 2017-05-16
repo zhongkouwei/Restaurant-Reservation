@@ -1,0 +1,69 @@
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">{$detail[0]['name']}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>您好，{$loginname}，欢迎登陆。您的IP地址为{$ip}。</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                        <caption>{$detail[0]['name']}</caption>
+                        <thead>
+                            <tr>
+                            <th>项目</th>
+                            <th>值</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>名字</td>
+                            <td>{$detail[0]['name']}</td>
+                            </tr>
+                            <tr>
+                            <td>老板</td>
+                            <td>{$detail[0]['owner']}</td>
+                            </tr>
+                            <tr>
+                            <td>手机</td>
+                            <td>{$detail[0]['phone']}</td>
+                            </tr>
+                            <tr>
+                            <td>地址</td>
+                            <td>{$detail[0]['address']}</td>
+                            </tr>
+                            <tr>
+                            <td>说明</td>
+                            <td>{$detail[0]['detail']}</td>
+                            </tr>
+                            <tr>
+                            <td>餐桌数目</td>
+                            <td>{$detail[0]['desk_num']}</td>
+                            </tr>
+                            <tr>
+                            <td>已预约次数</td>
+                            <td>{$detail[0]['times']}</td>
+                            </tr>
+                            <tr>
+                            <td>图片</td>
+                            <td><img src="__PUBLIC__/images/restaurant/{$detail[0]['image']}"></td>
+                            </tr>
+                            <tr>
+                            <td>当前状态</td>
+                            <td>{$detail[0]['state']}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
