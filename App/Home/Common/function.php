@@ -21,9 +21,9 @@
     vendor("wechat.wechat");
     $options = array(
         'token'=>'weixin', //填写你设定的key
-        'encodingaeskey'=>'jgNF3nRdTqwauhqiCcJcLxkiwEDLeYl3PdtF2lBMtQn', //填写加密用的EncodingAESKey
-        'appid'=>'wx439a3874a5b28c4f', //填写高级调用功能的app id, 请在微信开发模式后台查询
-        'appsecret'=>'99f3dc0e04ed8a5dae12ee29e3e847cc' //填写高级调用功能的密钥
+        'encodingaeskey'=>'', //填写加密用的EncodingAESKey
+        'appid'=>'', //填写高级调用功能的app id, 请在微信开发模式后台查询
+        'appsecret'=>'' //填写高级调用功能的密钥
       );
       $weObj = new Wechat($options);
       $accesstoken = $weObj->getOauthAccessToken();
