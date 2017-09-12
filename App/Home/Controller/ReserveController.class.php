@@ -19,7 +19,7 @@ class ReserveController extends Controller {
         //    return;
         // }
         //$info = getWechatInfo();
-        $wechatid               = "olm4UwZAop7Y0o4ZcAv5hwweeiWs";
+        $wechatid               = "";
         
         $_SESSION['wechatid']=$wechatid;
 
